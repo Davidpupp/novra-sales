@@ -7,6 +7,7 @@ RUN npm ci && npm run build
 # ---------- Imagem final ----------
 FROM python:3.12-slim
 WORKDIR /app
+COPY requirements.txt .
 COPY backend/ .
 COPY --from=ui-builder /ui/static /app/static
 RUN pip install -r requirements.txt
