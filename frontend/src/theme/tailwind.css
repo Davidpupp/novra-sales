@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Glassmorphism utility */
+@layer utilities {
+  .glass {
+    @apply bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl shadow-xl;
+  }
+}
+
+/* Botões principais */
+.btn-primary {
+  @apply bg-blue-600 text-white font-semibold py-2 px-4 rounded transition-all;
+}
+.btn-primary:hover {
+  @apply shadow-lg shadow-blue-500/50;
+}
+
+/* Dark mode base */
+html.dark {
+  @apply bg-gray-900 text-gray-100;
+}

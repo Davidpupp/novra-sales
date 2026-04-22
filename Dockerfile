@@ -1,0 +1,15 @@
+# ---------- Build do frontend ----------
+FROM node:20-alpine AS ui-builder
+WORKDIR /ui
+COPY frontend/ .
+RUN npm ci && npm run build   # → gera ./static
+
+# ---------- Imagem final ----------
+FROM python:3.12-slim
+WORKDIR /app
+COPY backend/ .
+COPY --from=ui-builder /ui/static ./static   # assets estáticos servidos por FastAPI
+
+ENV DATABASE_URL=postgresql+asyncpg://postgres:postgres@db/novra
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
