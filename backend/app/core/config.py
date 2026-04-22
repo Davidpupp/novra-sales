@@ -1,10 +1,8 @@
 import os
 import sys
 from pathlib import Path
-from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR.parent / ".env")
 
 class Settings:
     SECRET_KEY: str = os.getenv("SECRET_KEY") or (
