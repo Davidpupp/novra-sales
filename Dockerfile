@@ -8,6 +8,7 @@ RUN npm ci && npm run build
 FROM python:3.12-slim
 WORKDIR /app
 COPY requirements.txt .
+RUN ls -la /app/
 COPY backend/ .
 COPY --from=ui-builder /ui/static /app/static
 RUN pip install --no-cache-dir -r requirements.txt
