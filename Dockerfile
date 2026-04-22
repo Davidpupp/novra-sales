@@ -9,6 +9,7 @@ FROM python:3.12-slim
 WORKDIR /app
 COPY backend/ .
 COPY --from=ui-builder /ui/static /app/static
+RUN pip install --no-cache-dir -r requirements.txt
 
 ENV DATABASE_URL=postgresql+asyncpg://postgres:postgres@db/novra
 EXPOSE 8000
